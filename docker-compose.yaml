@@ -1,0 +1,28 @@
+version: '3'
+services:
+  node.app:
+    container_name: node.app
+    build:
+      context: ./
+      dockerfile: node.Dockerfile
+    command: node app.js
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - postgres.vinicius
+    ports:
+      - "3000:3000"
+
+  postgres.vinicius:
+    container_name: postgres.vinicius
+    image: postgres
+    ports:
+      - "5431:5432"
+    volumes:
+      - postgre-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=vinicius
+      - POSTGRES_PASSWORD=teste
+      - POSTGRES_DB=teste
+volumes:
+    postgre-data:
