@@ -1,0 +1,29 @@
+{
+    "development": {
+        "username": "vinicius",
+        "password": "teste",
+        "database": "teste",
+        "host": "postgres.vinicius",
+        "port": 5432,
+        "dialect": "postgres",
+        "operatorsAliases": false
+    },
+    "test": {
+        "username": "vinicius",
+        "password": "teste",
+        "database": "teste",
+        "host": "postgres.vinicius",
+        "port": 5432,
+        "dialect": "postgres",
+        "operatorsAliases": false
+    },
+    "production": {
+        "username": "vinicius",
+        "password": "teste",
+        "database": "teste",
+        "host": "postgres.vinicius",
+        "port": 5432,
+        "dialect": "postgres",
+        "operatorsAliases": false
+    }
+}
