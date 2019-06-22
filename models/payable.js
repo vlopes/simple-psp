@@ -1,10 +1,22 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     const Payable = sequelize.define('Payable', {
-        transaction_id: DataTypes.INTEGER,
-        value: DataTypes.INTEGER,
-        status: DataTypes.STRING,
-        payment_date: DataTypes.DATE
+        transaction_id: {
+            allowNull: false,
+            type:DataTypes.INTEGER
+        },
+        value: {
+            allowNull: false,
+            type:DataTypes.INTEGER
+        },
+        status: {
+            allowNull: false,
+            type:DataTypes.STRING
+        },
+        payment_date: {
+            allowNull: false,
+            type: DataTypes.DATE
+        }
     }, {});
     Payable.associate = function (models) {
         Payable.belongsTo(models.Transaction);

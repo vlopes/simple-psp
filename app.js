@@ -23,6 +23,7 @@ app.post('/transaction', function (req, res) {
     }).then((transaction) => {
         let tax = 0
         let status = ''
+        let paymentDate = new Date()
 
         if (transaction.payment_method == 'debit_card') {
             tax = 0.97
@@ -30,19 +31,23 @@ app.post('/transaction', function (req, res) {
         } else {
             tax = 0.95
             status = 'waiting_funds'
+            paymentDate.setDate(paymentDate.getDate() + 30)
         }
 
         let value = transaction.value * tax
 
-        Payable.create({
+        return Payable.create({
             transaction_id: transaction.id,
             value: value,
             status: status,
-            payment_date: new Date()
-        }).then((payable) => {
-            res.status(201).send(transaction)
+            payment_date: paymentDate
         })
     })
+        .then(() => {
+            res.status(201).send(
+                { message: 'The transaction was successfuly created!' }
+            )
+        })
 });
 
 app.listen(3000, function () {

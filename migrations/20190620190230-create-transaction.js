@@ -9,21 +9,27 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             value: {
+                allowNull: false,
                 type: Sequelize.INTEGER
             },
             description: {
+                allowNull: false,
                 type: Sequelize.TEXT
             },
             payment_method: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             card_number: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             owner_name: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             ccv: {
+                allowNull: false,
                 type: Sequelize.INTEGER
             },
             createdAt: {

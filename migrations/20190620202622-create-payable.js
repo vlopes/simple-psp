@@ -13,12 +13,15 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             value: {
+                allowNull: false,
                 type: Sequelize.INTEGER
             },
             status: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             payment_date: {
+                allowNull: false,
                 type: Sequelize.DATE
             },
             createdAt: {
