@@ -16,16 +16,16 @@ app.post('/transaction', function (req, res) {
     Transaction.create({
         value: req.body.value,
         description: req.body.description,
-        payment_method: req.body.payment_method,
-        card_number: req.body.card_number,
-        owner_name: req.body.owner_name,
+        paymentMethod: req.body.payment_method,
+        cardNumber: req.body.card_number,
+        ownerName: req.body.owner_name,
         ccv: req.body.ccv
     }).then((transaction) => {
         let tax = 0
         let status = ''
         let paymentDate = new Date()
 
-        if (transaction.payment_method == 'debit_card') {
+        if (transaction.paymentMethod == 'debit_card') {
             tax = 0.97
             status = 'paid'
         } else {
@@ -37,10 +37,10 @@ app.post('/transaction', function (req, res) {
         let value = transaction.value * tax
 
         return Payable.create({
-            transaction_id: transaction.id,
+            transactionId: transaction.id,
             value: value,
             status: status,
-            payment_date: paymentDate
+            paymentDate: paymentDate
         })
     })
         .then(() => {

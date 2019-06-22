@@ -16,15 +16,15 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.TEXT
             },
-            payment_method: {
+            paymentMethod: {
                 allowNull: false,
                 type: Sequelize.STRING
             },
-            card_number: {
+            cardNumber: {
                 allowNull: false,
                 type: Sequelize.STRING
             },
-            owner_name: {
+            ownerName: {
                 allowNull: false,
                 type: Sequelize.STRING
             },

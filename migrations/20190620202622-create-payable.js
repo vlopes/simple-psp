@@ -8,7 +8,7 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            transaction_id: {
+            transactionId: {
                 allowNull: false,
                 type: Sequelize.INTEGER
             },
@@ -20,7 +20,7 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.STRING
             },
-            payment_date: {
+            paymentDate: {
                 allowNull: false,
                 type: Sequelize.DATE
             },

@@ -9,15 +9,15 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allow_null: false
         },
-        payment_method: {
+        paymentMethod: {
             type: DataTypes.STRING,
             allow_null: false
         },
-        card_number: {
+        cardNumber: {
             type: DataTypes.STRING,
             allow_null: false
         },
-        owner_name: {
+        ownerName: {
             type: DataTypes.STRING,
             allow_null: false
         },
@@ -26,16 +26,17 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     }, {
-        hooks: {
-            beforeSave: (transaction) => {
-                let card_number = transaction.card_number
-                let last_digits = card_number.substr(card_number.length - 4)
-                let treated_number = 'XXXX-XXXX-XXXX-' + last_digits
-                transaction.card_number = treated_number
-            }
-        },
-        sequelize
-    });
+            hooks: {
+                beforeSave: (transaction) => {
+                    let card_number = transaction.cardNumber
+                    let last_digits = card_number.substr(card_number.length - 4)
+                    let treated_number = 'XXXX-XXXX-XXXX-' + last_digits
+                    transaction.cardNumber = treated_number
+                }
+            },
+            sequelize
+        }
+    );
 
     Transaction.associate = function (models) {
         // associations can be defined here
