@@ -1,5 +1,5 @@
 let express = require('express');
-let transactionController = require('../controllers/transaction_controller')
+let transactionController = require('../controllers/transaction_controller');
 
 let router = express.Router();
 

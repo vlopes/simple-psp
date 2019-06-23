@@ -1,5 +1,5 @@
 let express = require('express');
-let payableController = require('../controllers/payable_controller')
+let payableController = require('../controllers/payable_controller');
 
 let router = express.Router();
 
