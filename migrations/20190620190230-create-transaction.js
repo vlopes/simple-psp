@@ -28,7 +28,7 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.STRING
             },
-            ccv: {
+            cvv: {
                 allowNull: false,
                 type: Sequelize.INTEGER
             },

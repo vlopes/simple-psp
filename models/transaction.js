@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allow_null: false
         },
-        ccv: {
+        cvv: {
             type: DataTypes.INTEGER,
             allowNull: false
         }
