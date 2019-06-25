@@ -1,0 +1,116 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API Pagarme",
+        "description": "Api utilizada como avaliação"
+    },
+    "host": "http://localhost:3000/",
+    "tags": [
+        {
+            "name": "Transactions",
+            "description": "Permite a criação e listagem de Transactions"
+        },
+        {
+            "name": "Payables",
+            "description": "Permite checar a soma de todos os Payables ja recebidos ('paid') e dos que ainda serão recebidos ('waiting_funds')"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "paths": {
+        "/transaction": {
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "Cria uma nova Transaction no banco e um Payable referente a essa Transaction",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "description": "Transaction que sera criada no banco",
+                        "schema": {
+                            "$ref": "#/definitions/Transaction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Erro ao criar transaction"
+                    },
+                    "200": {
+                        "description": "Transaction criada com sucesso"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "Lista todas as Transactions do banco",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Transaction"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Transaction": {
+            "required": [
+                "value",
+                "description",
+                "paymentMethod",
+                "cardNumber",
+                "ownerName",
+                "cvv"
+            ],
+            "properties": {
+                "value": {
+                    "type": "number",
+                    "required": true
+                },
+                "description": {
+                    "type": "string",
+                    "required": true
+                },
+                "paymentMethod": {
+                    "type": "string",
+                    "required": true,
+                    "enum": [
+                        "debit_card",
+                        "credit_card"
+                    ]
+                },
+                "ownerName": {
+                    "type": "string",
+                    "required": true
+                },
+                "cvv": {
+                    "type": "string",
+                    "required": true
+                },
+                "cardNumber": {
+                    "type": "string",
+                    "description": "Apenas numeros sem traços.",
+                    "required": true
+                }
+            }
+        }
+    }
+}
