@@ -1,22 +1,23 @@
 const Transaction = require('../models').Transaction;
 const Payable = require('../models').Payable;
 
-exports.createTransaction = function (req, res) {
+exports.createTransaction = function (req, res, next) {
     let value = parseFloat(req.body.value);
     let transactionValue = Math.floor(value * 100);
 
     Transaction.create({
         value: transactionValue,
         description: req.body.description,
-        paymentMethod: req.body.payment_method,
-        cardNumber: req.body.card_number,
-        ownerName: req.body.owner_name,
+        paymentMethod: req.body.paymentMethod,
+        cardNumber: req.body.cardNumber,
+        ownerName: req.body.ownerName,
         cvv: req.body.cvv
     })
         .then(createPayableForTransaction)
         .then(res.status(201).send(
             { message: 'The transaction was successfuly created!' }
-        ));
+        ))
+        .catch(next);
 };
 
 const createPayableForTransaction = (transaction) => {
@@ -44,8 +45,8 @@ const createPayableForTransaction = (transaction) => {
     });
 }
 
-exports.listTransactions = function (req, res) {
+exports.listTransactions = function (req, res, next) {
     Transaction.findAll().then(
         (transactions) => res.status(200).send(transactions)
-    );
+    ).catch(next);
 }
