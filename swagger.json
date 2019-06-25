@@ -4,7 +4,7 @@
         "title": "API Pagarme",
         "description": "Api utilizada como avaliação"
     },
-    "host": "http://localhost:3000/",
+    "host": "localhost:3000/",
     "tags": [
         {
             "name": "Transactions",
@@ -63,6 +63,54 @@
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/Transaction"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/payable/waiting_funds": {
+            "get": {
+                "tags": [
+                    "Payables"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "Devolve a somatoria de todos os Payables que o usuario ira receber (status = waiting_funds)",
+                "responses": {
+                    "200": {
+                        "description": "Consulta realizada com sucesso.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/payable/available_funds": {
+            "get": {
+                "tags": [
+                    "Payables"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "description": "Devolve a somatoria de todos os Payables que o usuario ja recebeu (status = paid)",
+                "responses": {
+                    "200": {
+                        "description": "Consulta realizada com sucesso.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
                             }
                         }
                     }

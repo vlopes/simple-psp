@@ -23,3 +23,8 @@ Quando os dois containers estiverem rodando acesse o container do node utilizand
 Dentro do container execute o comando para que as migrações sejam efetuadas:
 
 `npm run migrate`
+
+
+# Serviços disponibilizados
+
+Com o container rodando acesse http://localhost:3000/api-docs/ para ver as rotas e parametros requeridos
