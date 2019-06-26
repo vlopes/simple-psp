@@ -1,12 +1,11 @@
-const Transaction = require('../models').Transaction;
-const Payable = require('../models').Payable;
+const { Transaction, Payable } = require('../models');
+const utils = require('../utils')
 
 exports.createTransaction = function (req, res, next) {
-    let value = parseFloat(req.body.value);
-    let transactionValue = Math.floor(value * 100);
+    let value = utils.reaisToCentavos(req.body.value)
 
     Transaction.create({
-        value: transactionValue,
+        value: value,
         description: req.body.description,
         paymentMethod: req.body.paymentMethod,
         cardNumber: req.body.cardNumber,
@@ -21,18 +20,9 @@ exports.createTransaction = function (req, res, next) {
 };
 
 const createPayableForTransaction = (transaction) => {
-    let tax = 0,
-        status = '',
-        paymentDate = new Date();
-
-    if (transaction.paymentMethod == 'debit_card') {
-        tax = 0.97;
-        status = 'paid';
-    } else {
-        tax = 0.95;
-        status = 'waiting_funds';
-        paymentDate.setDate(paymentDate.getDate() + 30);
-    }
+    const { tax, status, paymentDate } = generatePayableData(
+        transaction.paymentMethod
+    );
 
     let payableValue = transaction.value * tax;
     payableValue = Math.floor(payableValue);
@@ -43,6 +33,28 @@ const createPayableForTransaction = (transaction) => {
         status: status,
         paymentDate: paymentDate
     });
+}
+
+const generatePayableData = (paymentMethod) => {
+    let paymentDate = new Date();
+
+    if (paymentMethod == 'debit_card') {
+        return {
+            tax: 0.97,
+            status: 'paid',
+            paymentDate: paymentDate
+        };
+    }
+
+    if (paymentMethod == 'credit_card') {
+        paymentDate.setDate(paymentDate.getDate() + 30)
+
+        return {
+            tax: 0.95,
+            status: 'waiting_funds',
+            paymentDate: paymentDate
+        };
+    }
 }
 
 exports.listTransactions = function (req, res, next) {

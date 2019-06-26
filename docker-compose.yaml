@@ -1,7 +1,7 @@
 version: '3'
 services:
-    postgres.vinicius:
-        container_name: postgres.vinicius
+    postgres:
+        container_name: postgres
         image: postgres
         ports:
             - "5431:5432"
@@ -16,11 +16,9 @@ services:
         build:
             context: ./
             dockerfile: node.Dockerfile
-        command: npm run dev
-        volumes:
-            - .:/usr/app
+        command: node app.js
         depends_on:
-            - postgres.vinicius
+            - postgres
         ports:
             - "3000:3000"
 volumes:

@@ -3,7 +3,7 @@
         "username": "vinicius",
         "password": "teste",
         "database": "teste",
-        "host": "postgres.vinicius",
+        "host": "postgres",
         "port": 5432,
         "dialect": "postgres",
         "operatorsAliases": false
@@ -12,7 +12,7 @@
         "username": "vinicius",
         "password": "teste",
         "database": "teste",
-        "host": "postgres.vinicius",
+        "host": "postgres",
         "port": 5432,
         "dialect": "postgres",
         "operatorsAliases": false
@@ -21,7 +21,7 @@
         "username": "vinicius",
         "password": "teste",
         "database": "teste",
-        "host": "postgres.vinicius",
+        "host": "postgres",
         "port": 5432,
         "dialect": "postgres",
         "operatorsAliases": false

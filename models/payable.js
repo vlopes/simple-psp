@@ -19,9 +19,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {});
 
-    Payable.associate = function (models) {
-        Payable.belongsTo(models.Transaction);
-    };
-
     return Payable;
 };

@@ -40,8 +40,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    Transaction.associate = function (models) {
-        // associations can be defined here
-    };
     return Transaction;
 };
