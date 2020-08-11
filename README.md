@@ -1,6 +1,4 @@
-# pagarme_test
-
-Projeto utilizado como avaliação
+# simple-psp
 
 
 # Inicialização
